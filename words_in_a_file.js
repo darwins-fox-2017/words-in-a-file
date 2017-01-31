@@ -1,3 +1,12 @@
-var sys = require('sys');
+var fs       = require('fs');
+var readFile = fs.readFileSync('source.txt','utf-8');
 
-// actual conversion code starts here
+function checkFile(dataFile) {
+  if (!dataFile) {
+    console.log('error');
+  }else {
+    return readFile
+  }
+}
+
+console.log(checkFile(readFile));
