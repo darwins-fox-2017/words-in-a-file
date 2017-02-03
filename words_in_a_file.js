@@ -37,7 +37,7 @@ function checkFile(dataFile, values) {
     for (let i = 0; i < notChar.length; i++) {
       if(notChar[i] !== ""){
         let words = notChar[i].toLowerCase().replace(/\[^A-z]/, "")
-        if(stopwords.indexOf(words) === -1 && tempChar.indexOf(words) === -1){
+        if(stopwords.indexOf(words) ===-1 && tempChar.indexOf(words) === -1){
           tempChar.push(notChar[i])
         }
       }
@@ -60,9 +60,9 @@ function checkFile(dataFile, values) {
 
     wordsFrequncy.sort(function(a, b){return b[1] - a[1]})
     for (let i = 0; i < values; i++) {
-      console.log((wordsFrequncy[i][0]));
+      console.log(`Kata ${wordsFrequncy[i][0]} sebanyak ${wordsFrequncy[i][1]}`);
     }
   }
 }
 
-checkFile(readFile, 3)
+checkFile(readFile, 4)
