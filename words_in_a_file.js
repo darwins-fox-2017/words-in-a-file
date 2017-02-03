@@ -15,8 +15,29 @@ function checkFile(dataFile, values) {
         tempChar.push(notChar[i])
       }
     }
-    return tempChar
+
+//menghitung jumlah kata yang sering muncul
+    let objectCount = {}
+    for (let i = 0; i < tempChar.length; i++) {
+      var numCount = tempChar[i]
+      if(objectCount[numCount]){
+        objectCount[numCount] = objectCount[numCount] + 1
+      }else {
+        objectCount[numCount] = 1
+      }
+    }
+    let wordsFrequncy = []
+    for (let i in objectCount){
+      wordsFrequncy.push([i,objectCount[i]])
+    }
+
+    wordsFrequncy.sort(function(a, b){return b[1] - a[1]})
+
+    for (let i = 0; i < values; i++) {
+      console.log((wordsFrequncy[i][0]));
+    }
   }
 }
 
-console.log(checkFile(readFile));
+// console.log(checkFile(readFile, 3));
+checkFile(readFile, 3)
