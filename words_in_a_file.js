@@ -33,8 +33,8 @@ class Words {
     // remove the conjunctions
     let removedConjunction = this.removeConjunction(sorted)
     // pick only the top 3
-    let onlyTop3 = this.putTop3(removedConjunction)
-    this.displayFinalResult(onlyTop3)
+    let onlyTopWords = this.putTopWords(removedConjunction)
+    this.displayFinalResult(onlyTopWords)
 
     return 'Finish'
   }
@@ -74,25 +74,27 @@ class Words {
     return words
   }
 
-  putTop3(words){
+  putTopWords(words){
     let result = []
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < this.number; i++) {
       result.push(words[i])
     }
     return result
   }
 
-  displayFinalResult(topThree){
+  displayFinalResult(topWords){
     console.log('--- The most commonly word in the file is ---');
-    for (var i = 0; i < topThree.length; i++) {
-      console.log(topThree[i][0] + ' with ' + topThree[i][1] + ' occurrences');
+    for (var i = 0; i < topWords.length; i++) {
+      console.log(topWords[i][0] + ' with ' + topWords[i][1] + ' occurrences');
     }
   }
 }
 
-
-
-let play = new Words('source.txt', 3)
+let play = new Words('source.txt', 4)
 console.log(play.mostFrequentCount());
+
+console.log('---- Release 2 ----');
+
+// let play2 = new Words('')
 
 // actual conversion code starts here
