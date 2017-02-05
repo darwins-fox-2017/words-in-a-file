@@ -88,6 +88,26 @@ class Words {
       console.log(topWords[i][0] + ' with ' + topWords[i][1] + ' occurrences');
     }
   }
+
+  findLongestSentence(){
+    let text = this.parse()
+    let patternOfSentence = /[^.!?]*[.!?]/gi
+    let sentences = text.match(patternOfSentence)
+    let longestSentenceCount = 0
+    let longestSentence = ''
+    for (var i = 0; i < sentences.length; i++) {
+      if (sentences[i].length > longestSentenceCount) {
+        longestSentenceCount = sentences[i].length
+        longestSentence = sentences[i]
+      }
+    }
+    console.log('the longest is : ' + longestSentence );
+    console.log('with ' + this.wordCount(longestSentence) + ' words and ' + longestSentence.length  +' characters');
+  }
+
+  wordCount(sentence){
+    return sentence.split(' ').length
+  }
 }
 
 let play = new Words('source.txt', 4)
@@ -95,6 +115,8 @@ console.log(play.mostFrequentCount());
 
 console.log('---- Release 2 ----');
 
-let play2 = new Words('')
+let play2 = new Words('lorem-ipsum.txt')
+console.log('The longest sentence on the text file');
+play2.findLongestSentence()
 
 // actual conversion code starts here
