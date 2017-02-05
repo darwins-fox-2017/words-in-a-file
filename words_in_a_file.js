@@ -1,7 +1,7 @@
 class Words {
   constructor(fileName, number) {
     this.fileName = fileName
-    this.number = number
+    this.number = number || 0
   }
 
   parse(){
@@ -95,6 +95,6 @@ console.log(play.mostFrequentCount());
 
 console.log('---- Release 2 ----');
 
-// let play2 = new Words('')
+let play2 = new Words('')
 
 // actual conversion code starts here
