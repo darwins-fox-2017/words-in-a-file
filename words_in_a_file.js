@@ -33,9 +33,10 @@ class Words {
     // remove the conjunctions
     let removedConjunction = this.removeConjunction(sorted)
     // pick only the top 3
-    console.log(removedConjunction);
-    // let onlyTop3 = this.putTop3(removedConjunction)
-    // console.log(onlyTop3);
+    let onlyTop3 = this.putTop3(removedConjunction)
+    this.displayFinalResult(onlyTop3)
+
+    return 'Finish'
   }
 
   sort(words){
@@ -51,51 +52,42 @@ class Words {
 
   removeConjunction(words){
 
-    let conjunctions =['and','who','Which','Where','Why','How','That','While',
-                  'Before','Whether','Although','though','Since','so','that',
-                  'until','as','after','if','Because','Unless','than','but','or',
+    let conjunctions =['and','who','which','where','why','how','that','while',
+                  'before','whether','although','though','since','so','that',
+                  'until','as','after','if','because','unless','than','but','or',
                   'for','only','of','is','on','the','an','at','ay','in','to','by',
                   'it','th','ref','set','with'];
-    // remove if it a char not word
-    console.log('-------------------------------');
-    
-    let result = this.remover(words, 0, 'the')
-    console.log(result);
-    // for (let i = result.length -1; i >= 0 ; i--) {
-    //
-    //   if (result[i][0].length <= 2) {
-    //     result.splice(i, 1)
-    //   } else {
-    //     for (let j = 0; j < conjunctions.length; j++) {
-    //
-    //
-    //       if (conjunctions[j].toLowerCase() == result[i][0].toLowerCase()) {
-    //         result.splice(j, 1)
-    //       }
-    //     }
-    //   }
-    // }
-    // return result
+
+    let removedWordLessThan3Char = this.removeWordLessThan3Character(words)
+    let result = removedWordLessThan3Char.filter(word => conjunctions.indexOf(word[0].toLowerCase()) === -1);
+
+    return result
   }
 
-  remover(words, index, conjunction){
-    let found = words[index].indexOf(conjunction)
-
-    while (found !== -1) {
-      words.splice(found, 1)
-      found = words.indexOf(conjunction)
+  removeWordLessThan3Character(words){
+    for (let i = words.length - 1; i >= 0; i--) {
+      if (words[i][0].length <= 2) {
+        words.splice(i, 1)
+      }
     }
 
     return words
   }
 
-  // putTop3(words){
-  //   let result = []
-  //   for (var i = 0; i < 3; i++) {
-  //     result.push(words[i])
-  //   }
-  //   return result
-  // }
+  putTop3(words){
+    let result = []
+    for (var i = 0; i < 3; i++) {
+      result.push(words[i])
+    }
+    return result
+  }
+
+  displayFinalResult(topThree){
+    console.log('--- The most commonly word in the file is ---');
+    for (var i = 0; i < topThree.length; i++) {
+      console.log(topThree[i][0] + ' with ' + topThree[i][1] + ' occurrences');
+    }
+  }
 }
 
 
